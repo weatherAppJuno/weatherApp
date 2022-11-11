@@ -237,6 +237,18 @@ header .wrapper {
   background-position: 30% 60%;
 }
 
+.accuweather {
+  width: 100%;
+  height: 40vh;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #4782ac;
+}
+
 h1 {
   text-align: center;
   padding: 10%;
