@@ -226,6 +226,16 @@ html {
   overflow: hidden;
 }
 
+.wrapper {
+  max-width: 1260px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
 fieldset {
   border: none;
   display: -webkit-box;
