@@ -3,3 +3,10 @@
     width: 90%;
     margin: 0 auto;
 }
+
+header {
+    .wrapper {
+        background-image: url(../assets/header-photo.jpg);
+        background-position: 30% 60%;
+    }
+}
