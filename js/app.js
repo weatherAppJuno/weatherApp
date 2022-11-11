@@ -13,7 +13,8 @@ weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditio
 // Construct the init method
 weatherApp.init = () => {
     weatherApp.getUserInput();
-    weatherApp.callSearchApi();
+    // weatherApp.callSearchApi();
+    // weatherApp.callWeatherApi();
 }
 
 // Make a method that attaches an event listener to the form
@@ -57,15 +58,18 @@ weatherApp.callSearchApi = (query) => {
             resJSON.forEach((city) => {
                 // Capture the following properties and store them into variables:
                 // the Key property  
+                const cityKey = city.Key;
+                weatherApp.callWeatherApi(cityKey);
+                
                 // Province - for stretch goal (if we expand to all of Canada - will also have to change starting endpoint) - AdministrativeArea.EnglishName
                 // GeoPosition (longitude and lattitude) - for stretch goal 
                 // Pass the Key property value to the next method (more values would be passed as parameters if we aim for stretch goals)
 
-                console.log(city.EnglishName);
-                console.log(city.AdministrativeArea.EnglishName);
-                console.log(city.Key);
-                console.log(city.GeoPosition.Longitude);
-                console.log(city.GeoPosition.Latitude);
+                // console.log(city.EnglishName);
+                // console.log(city.AdministrativeArea.EnglishName);
+                //  console.log(city.Key);
+                // console.log(city.GeoPosition.Longitude);
+                // console.log(city.GeoPosition.Latitude);
             });
         });
 }
@@ -75,11 +79,31 @@ weatherApp.callSearchApi = (query) => {
     
 
 // Make a method that takes the first API call's Key property as a parameter
+    weatherApp.callWeatherApi = (key) => {
+        const url = new URL(weatherApp.weatherEndpoint + key);
+        console.log(url);
+
+        url.search = new URLSearchParams({
+            apikey: weatherApp.apiKey
+        });
+
+        fetch(url)
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            console.log(data)
+        });
+
+
+    }
     // use this parameter to update the Current Conditions API endpoint
+    
     // Call the new endpoint for the API
     // This receives the current weather forecast data as an object for the user's selected city
     // We capture the following properties and store them into variables:
         // City name, temperature (F and C), weather text, weather icon (stretch goal), isDayTime (stretch goal)
+        
         // Pass these variables as parameters into the following method
     
 // Make a method that accepts a number of parameters, and appends them to a div on the page (could also be a UL with LIs)
