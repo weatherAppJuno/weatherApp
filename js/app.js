@@ -92,7 +92,17 @@ weatherApp.callSearchApi = (query) => {
             return res.json();
         })
         .then(data => {
-            console.log(data)
+
+            // City name, temperature (F and C), weather text, weather icon (stretch goal), isDayTime (stretch goal)
+            // TEMPERATURE METRIC
+        const tempC = data[0].Temperature.Metric.Value;
+            // TEMPERATURE INPERIAL
+        const tempF = data[0].Temperature.Imperial.Value;
+
+        // WEATHER TEXT
+        const weatherText = data[0].WeatherText;
+
+            // console.log(data[0])
         });
 
 
@@ -102,7 +112,6 @@ weatherApp.callSearchApi = (query) => {
     // Call the new endpoint for the API
     // This receives the current weather forecast data as an object for the user's selected city
     // We capture the following properties and store them into variables:
-        // City name, temperature (F and C), weather text, weather icon (stretch goal), isDayTime (stretch goal)
         
         // Pass these variables as parameters into the following method
     
