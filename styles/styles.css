@@ -232,9 +232,9 @@ html {
   margin: 0 auto;
 }
 
-header .wrapper {
+header {
   background-image: url(../assets/header-photo.jpg);
-  background-position: 30% 60%;
+  background-position: 0% 60%;
 }
 
 h1 {
