@@ -13,8 +13,7 @@ weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditio
 // Construct the init method
 weatherApp.init = () => {
     weatherApp.getUserInput();
-    // weatherApp.callSearchApi();
-    weatherApp.callApi();
+    weatherApp.callSearchApi();
 }
 
 // Make a method that attaches an event listener to the form
@@ -28,7 +27,7 @@ weatherApp.getUserInput = () => {
         // When user submits form, store the value of the input into a variable
         const inputValue = event.originalTarget[1].value;
         // Pass inputValue into the API call method below as q
-        weatherApp.callApi(inputValue);
+        weatherApp.callSearchApi(inputValue);
         // Clear the text in the input field with .textContent = '';
         inputEl.value = '';
     });
@@ -37,7 +36,7 @@ weatherApp.getUserInput = () => {
 
 // Make a method that constructs a new URL object using the user's input and globally-scoped variables
 
-weatherApp.callApi = (query) => {
+weatherApp.callSearchApi = (query) => {
     // construct new URL with the following params:
         // Api Key
         // Cities Search API endpoint 
