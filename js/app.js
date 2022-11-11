@@ -13,36 +13,67 @@ weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditio
 // Construct the init method
 weatherApp.init = () => {
     weatherApp.getUserInput();
+    // weatherApp.callSearchApi();
+    weatherApp.callApi();
 }
 
 // Make a method that attaches an event listener to the form
     // event.preventDefault();
     
     
-    weatherApp.getUserInput = () => {
-        document.querySelector(".searchForm").addEventListener('submit', function (event) {
-            event.preventDefault();
-            const inputEl = document.querySelector('#searchInput');
-            // When user submits form, store the value of the input into a variable
-            const inputValue = event.originalTarget[1].value;
-            // TODO: Pass inputValue into the API call method below as q           
-            inputEl.value = '';
-            // Clear the text in the input field with .textContent = '';
-        });
+weatherApp.getUserInput = () => {
+    document.querySelector(".searchForm").addEventListener('submit', function (event) {
+        event.preventDefault();
+        const inputEl = document.querySelector('#searchInput');
+        // When user submits form, store the value of the input into a variable
+        const inputValue = event.originalTarget[1].value;
+        // Pass inputValue into the API call method below as q
+        weatherApp.callApi(inputValue);
+        // Clear the text in the input field with .textContent = '';
+        inputEl.value = '';
+    });
 }    
 
 
 // Make a method that constructs a new URL object using the user's input and globally-scoped variables
+
+weatherApp.callApi = (query) => {
     // construct new URL with the following params:
         // Api Key
         // Cities Search API endpoint 
         // User's input goes into the q: property
-    // Use this newly constructed URL object to call the Cities Search API    
-    // Capture the following properties and store them into variables:
-        // the Key property  
-        // Province - for stretch goal (if we expand to all of Canada - will also have to change starting endpoint) - AdministrativeArea.EnglishName
-        // GeoPosition (longitude and lattitude) - for stretch goal 
-    // Pass the Key property value to the next method (more values would be passed as parameters if we aim for stretch goals)
+    const url = new URL(weatherApp.searchEndpoint);
+    url.search = new URLSearchParams({
+        apikey: weatherApp.apiKey,
+        q: query
+    });
+
+    // Use this newly constructed URL object to call the Cities Search API 
+    fetch(url)
+        .then((res) => {
+            return res.json();
+        })
+        .then((resJSON) => {
+            console.log(resJSON);
+            resJSON.forEach((city) => {
+                // Capture the following properties and store them into variables:
+                // the Key property  
+                // Province - for stretch goal (if we expand to all of Canada - will also have to change starting endpoint) - AdministrativeArea.EnglishName
+                // GeoPosition (longitude and lattitude) - for stretch goal 
+                // Pass the Key property value to the next method (more values would be passed as parameters if we aim for stretch goals)
+
+                console.log(city.EnglishName);
+                console.log(city.AdministrativeArea.EnglishName);
+                console.log(city.Key);
+                console.log(city.GeoPosition.Longitude);
+                console.log(city.GeoPosition.Latitude);
+            });
+        });
+}
+
+    
+       
+    
 
 // Make a method that takes the first API call's Key property as a parameter
     // use this parameter to update the Current Conditions API endpoint
@@ -61,32 +92,14 @@ weatherApp.init = () => {
     // isDayTime - would not be on page, but would affect CSS styles (stretch goal)
 
 // Call the init method
+
+
+
 weatherApp.init();
 
 
 
-// app.callApi = () => {
-//     const url = new URL(app.searchEndpoint);
-//     url.search = new URLSearchParams({
-//         apikey: app.apiKey,
-//         q: "Toronto"
-//     });
 
-//     fetch(url)
-//         .then((res) => {
-//             return res.json();
-//         })
-//         .then((resJSON) => {
-//             console.log(resJSON);
-//             resJSON.forEach((city) => {
-//                 console.log(city.EnglishName);
-//                 console.log(city.AdministrativeArea.EnglishName);
-//                 console.log(city.Key);
-//                 console.log(city.GeoPosition.Longitude);
-//                 console.log(city.GeoPosition.Latitude);
-//             });
-//         });
-// }
 
 // app.callWeather = () => {
 //     const url = new URL(`${app.weatherEndpoint}55488`);
