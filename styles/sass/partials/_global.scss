@@ -1,12 +1,18 @@
 @use "./variables";
 
+
+html {
+    font-size: 125%;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
 .wrapper {
     max-width: 1260px;
     width: 90%;
     margin: 0 auto;
 }
 
-header {
-    background-image: url(../assets/header-photo.jpg);
-    background-position: 0% 60%;
-}
