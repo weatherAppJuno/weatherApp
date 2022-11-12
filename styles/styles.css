@@ -226,15 +226,19 @@ html {
   overflow: hidden;
 }
 
+html {
+  font-size: 125%;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
 .wrapper {
   max-width: 1260px;
   width: 90%;
   margin: 0 auto;
-}
-
-header {
-  background-image: url(../assets/header-photo.jpg);
-  background-position: 0% 60%;
 }
 
 h1 {
@@ -256,4 +260,81 @@ fieldset {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 50vh;
+  background-image: url(../assets/header-photo-two.jpg);
+  background-position: top center;
+  background-size: cover;
+}
+
+header h1 {
+  color: #000;
+  font-size: 3.5rem;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.searchForm label {
+  font-size: 1.5rem;
+}
+.searchForm input {
+  width: 50%;
+  margin: 20px auto;
+  border: none;
+  font-size: 2rem;
+}
+.searchForm button {
+  width: 30%;
+  font-size: 1.5rem;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.accuweather {
+  width: 100%;
+  height: 42vh;
+  background-color: #c3d4ea;
+}
+
+footer {
+  width: 100%;
+  height: 8vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #3c66a9;
+}
+footer .copyrightJuno, footer .createdBy {
+  color: #c3d4ea;
+}
+footer .copyrightJuno a, footer .createdBy a {
+  text-decoration: none;
+  color: #c3d4ea;
+}
+footer .copyrightJuno {
+  width: 55%;
+  text-align: right;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+footer .createdBy {
+  width: 45%;
+  text-align: right;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  font-size: 0.8rem;
+  padding-right: 15px;
 }
