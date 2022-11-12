@@ -6,7 +6,8 @@ const weatherApp = {};
     // Current conditions API endpoint
     // API key
 // weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
-weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
+weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1';
+// weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
 weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
@@ -100,18 +101,28 @@ weatherApp.callWeatherApi = (key) => {
         const tempC = data[0].Temperature.Metric.Value;
         // TEMPERATURE INPERIAL
         const tempF = data[0].Temperature.Imperial.Value;
-
         // WEATHER TEXT
         const weatherText = data[0].WeatherText;
+        //UV INDEX
+        const uvIndex = data[0].UVIndex;
+        //UV INDEX TEXT
+        const uvIndexText = data[0].UVIndexText;
+        // HUMIDITY
+        const relativeHumidity = data[0].RelativeHumidity;
+        //AIR PRESSURE
+        const airPressure = data[0].Pressure.Metric.Value;
 
-        console.log(data[0])
+
+
+
+        console.log(data[0]);
         // Pass these variables as parameters into the following method
-        weatherApp.appendDetails(tempC, tempF, weatherText, weatherApp.cityName)
+        weatherApp.appendDetails(tempC, tempF, weatherText, weatherApp.cityName, uvIndex, uvIndexText, relativeHumidity, airPressure)
         });
     }
     
 // Make a method that accepts 4 parameters, and appends them to a div on the page (could also be a UL with LIs)
-weatherApp.appendDetails = (tempC, tempF, weatherText, cityName) => {
+weatherApp.appendDetails = (tempC, tempF, weatherText, cityName, uvIndex, uvIndexText, relativeHumidity, airPressure) => {
     //City name
     const newH2 = document.createElement('h2');
     //Weather text
@@ -120,21 +131,43 @@ weatherApp.appendDetails = (tempC, tempF, weatherText, cityName) => {
     const newParagraphC = document.createElement('p');
     //Temperature - Fahrenheit
     const newParagraphF = document.createElement('p');
+    //UV index
+    const uvIndexParagraph = document.createElement('p');
+    // Humidity
+    const relativeHumidityParagraph = document.createElement('p');
+    // Air pressure
+    const airPressureParagraph = document.createElement('p');
     // Grab the div element from the page
     const divEl = document.querySelector(".dataContainer");
+    //Grab the div class currentWeather
+    const divElCurrentWeather = document.querySelector('.currentWeather');
+    // Grab the div class detailsOther
+    const divElDetailsOther = document.querySelector('.detailsOther');
 
     // Add UV index and UV index text
     // Wind direction English, wind speed metric (unit and value), Wind Chill Temperature (F and C), relative humidity (%), pressure (if we have time) 
 
     newH2.innerText = cityName;
     newH3.innerText = weatherText;
-    newParagraphC.innerText = tempC;
-    newParagraphF.innerText = tempF;
+    newParagraphC.innerHTML = `${tempC }&#8451;`;
+    newParagraphF.innerText = `${tempF}F`;
+    uvIndexParagraph.innerText = `Max UV Index:  ${uvIndex} ${uvIndexText}`;
+    relativeHumidityParagraph.innerText = `Humidity: ${relativeHumidity}%`;
+    airPressureParagraph.innerText = `Pressure: ${airPressure}mb`;
 
-    // Clears the div from any previous data
-    divEl.innerHTML = '';
+    
     // Appends new data
-    divEl.append(newH2, newH3, newParagraphC, newParagraphF);
+    // divEl.append(newH2, newH3, newParagraphC, newParagraphF);
+
+    // Clears the divElCurrentWeather from any previous data
+    divElCurrentWeather.innerHTML = '';
+    //Appends Weather Text
+    divElCurrentWeather.append(newH3, newParagraphC, newParagraphF)
+    // Appends UV/ RELATIVE HUMIDITY/ AIR PRESSURE info
+    divElDetailsOther.append(uvIndexParagraph, relativeHumidityParagraph, airPressureParagraph);
+
+
+
 }
 
     // Weather icon - img (stretch goal)
