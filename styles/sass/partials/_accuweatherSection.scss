@@ -2,17 +2,35 @@
 
 .accuweather {
     width: 100%;
-    height: 42vh;
+    height: 45vh;
     background-color: variables.$secondary;
+
+    .currentWeather {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        h3 {
+            font-size: 1.8rem;
+        }
+        p {
+            font-size: 2.8rem;
+        }
+    }
 }
 
 footer {
     width: 100%;
-    height: 8vh;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: variables.$primary;
     .copyrightJuno, .createdBy {
         color: variables.$secondary;
+         width: 50%;
+         margin: 0 auto;
         a {
             text-decoration: none;
             color: variables.$secondary;
@@ -20,17 +38,14 @@ footer {
     }
 
     .copyrightJuno {
-        width: 55%;
-        text-align: right;
-        align-self: center;
+       text-align: center;
+       padding-top: 10px;
     }
 
     .createdBy {
-        width: 45%;
-        text-align: right;
-        align-self: flex-end;
-        font-size: 0.8rem;
-        padding-right: 15px;
+        text-align: center;
+        font-size: 0.9rem;
+        padding: 5px 0;
     }
 
 }
