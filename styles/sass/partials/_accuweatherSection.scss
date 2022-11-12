@@ -2,55 +2,55 @@
 
 .accuweather {
     width: 100%;
-    height: 45vh;
+    min-height: 45vh;
     background-color: variables.$secondary;
 
     .dataContainer {
         display: flex;
         flex-direction: column;
-    }
-
-    .currentWeather {
-        width: 70%;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-around;
         align-items: center;
-        h3 {
-            font-size: 1.8rem;
+
+        .cityName {
+            padding: 20px 0 10px 0;
         }
-        p {
-            font-size: 2.8rem;
+        
+        .currentWeather {
+            width: 75%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .detailsContainer {
+            display: flex;
+            width: 75%;
+            justify-content: center;
+        }
+
+        .detailsWind,
+        .detailsOther {
+            padding: 20px;
+            flex-basis: 50%;
+
+            p {
+                margin: 5px 0;
+            }
         }
     }
 }
 
 footer {
     width: 100%;
+    height: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: variables.$primary;
-    .copyrightJuno, .createdBy {
-        color: variables.$secondary;
-         width: 50%;
-         margin: 0 auto;
-        a {
-            text-decoration: none;
-            color: variables.$secondary;
-        }
-    }
 
-    .copyrightJuno {
-       text-align: center;
-       padding-top: 10px;
+    a:hover,
+    a:focus {
+        color: variables.$white;
     }
-
-    .createdBy {
-        text-align: center;
-        font-size: 0.9rem;
-        padding: 5px 0;
-    }
-
 }
