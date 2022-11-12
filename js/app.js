@@ -5,9 +5,9 @@ const weatherApp = {};
     // Cities search API endpoint (we are using the endpoint for Ontario, Canada)
     // Current conditions API endpoint
     // API key
-weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
-// weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
-weatherApp.searchEndpoint = 'http://dataservice.accuweather.com//locations/v1/cities/CA/ON/search'; // Searches within Canada, then Ontario 
+// weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
+weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
+weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
 // Variables to append
@@ -83,7 +83,8 @@ weatherApp.callWeatherApi = (key) => {
         const url = new URL(weatherApp.weatherEndpoint + key);
 
         url.search = new URLSearchParams({
-            apikey: weatherApp.apiKey
+            apikey: weatherApp.apiKey,
+            details: true
         });
 
         // Call the new endpoint for the API
@@ -121,6 +122,9 @@ weatherApp.appendDetails = (tempC, tempF, weatherText, cityName) => {
     const newParagraphF = document.createElement('p');
     // Grab the div element from the page
     const divEl = document.querySelector(".dataContainer");
+
+    // Add UV index and UV index text
+    // Wind direction English, wind speed metric (unit and value), Wind Chill Temperature (F and C), relative humidity (%), pressure (if we have time) 
 
     newH2.innerText = cityName;
     newH3.innerText = weatherText;
