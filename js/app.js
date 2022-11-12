@@ -149,11 +149,11 @@ weatherApp.appendDetails = (tempC, tempF, weatherText, cityName, uvIndex, uvInde
 
     newH2.innerText = cityName;
     newH3.innerText = weatherText;
-    newParagraphC.innerHTML = `${tempC } &#8451;`;
-    newParagraphF.innerText = tempF;
-    uvIndexParagraph.innerText = `Max UV Index:  ${uvIndex + uvIndexText}`;
-    relativeHumidityParagraph.innerText = `Humidity: ${relativeHumidity}`;
-    airPressureParagraph.innerText = `Pressure: ${airPressure}`;
+    newParagraphC.innerHTML = `${tempC }&#8451;`;
+    newParagraphF.innerText = `${tempF}F`;
+    uvIndexParagraph.innerText = `Max UV Index:  ${uvIndex} ${uvIndexText}`;
+    relativeHumidityParagraph.innerText = `Humidity: ${relativeHumidity}%`;
+    airPressureParagraph.innerText = `Pressure: ${airPressure}mb`;
 
     
     // Appends new data
