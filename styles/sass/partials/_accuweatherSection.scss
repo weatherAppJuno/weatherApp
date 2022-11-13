@@ -9,9 +9,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 70px 0;
 
         .cityName {
             padding: 20px 0 10px 0;
+            border-bottom: 3px solid variables.$tertiary;
+            margin-bottom: 30px;
         }
         
         .currentWeather {
@@ -20,12 +23,15 @@
             justify-content: space-around;
             align-items: center;
             padding: 10px 0;
+            border-bottom: 2px solid variables.$tertiary;
         }
         
         .detailsContainer {
             display: flex;
             width: 75%;
             justify-content: center;
+            // border: 2px solid variables.$tertiary;
+            
         }
 
         .detailsWind,
@@ -34,23 +40,15 @@
             flex-basis: 50%;
 
             p {
-                margin: 5px 0;
+                padding: 15px 0;
+                font-size: 1.5rem;
+            }
+            .uv, .humidity, .pressure {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid rgb(variables.$tertiary, 0.5);
             }
         }
     }
 }
 
-footer {
-    width: 100%;
-    height: 5vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: variables.$primary;
-
-    a:hover,
-    a:focus {
-        color: variables.$white;
-    }
-}

@@ -134,14 +134,23 @@ weatherApp.appendDetails = (tempC, tempF, weatherText, cityName, uvIndex, uvInde
     const newParagraphF = document.createElement('p');
     //UV index
     const uvIndexParagraph = document.createElement('p');
+    const uvIndexParagraphText = document.createElement('p');
     // Humidity
     const relativeHumidityParagraph = document.createElement('p');
+    const relativeHumidityParagraphText = document.createElement('p');
     // Air pressure
     const airPressureParagraph = document.createElement('p');
+    const airPressureParagraphText = document.createElement('p');
     //Grab the div class currentWeather
     const divElCurrentWeather = document.querySelector('.currentWeather');
-    // Grab the div class detailsOther
+    //! Grab the div class detailsOther
     const divElDetailsOther = document.querySelector('.detailsOther');
+    // Grab the div class uv
+    const divElUv = document.querySelector('.uv');
+    // Grab the div class humidity
+    const divElHumidity = document.querySelector('.humidity');
+    // Grab the div class pressure
+    const divElPressure = document.querySelector('.pressure');
 
     // Add UV index and UV index text
     // Wind direction English, wind speed metric (unit and value), Wind Chill Temperature (F and C), relative humidity (%), pressure (if we have time) 
@@ -153,16 +162,32 @@ weatherApp.appendDetails = (tempC, tempF, weatherText, cityName, uvIndex, uvInde
     newParagraphC.innerHTML = `${tempC }&#8451;`;
     newParagraphF.innerText = `${tempF}F`;
 
-    uvIndexParagraph.innerText = `Max UV Index:  ${uvIndex} ${uvIndexText}`;
-    relativeHumidityParagraph.innerText = `Humidity: ${relativeHumidity}%`;
-    airPressureParagraph.innerText = `Pressure: ${airPressure}mb`;
-
+    uvIndexParagraph.innerText = `${uvIndex} ${uvIndexText}`;
+    uvIndexParagraphText.innerText = `Max UV Index:`;
+    relativeHumidityParagraph.innerText = `${relativeHumidity}%`;
+    relativeHumidityParagraphText.innerText = `Humidity:`;
+    airPressureParagraph.innerText = `${airPressure}mb`;
+    airPressureParagraphText.innerText = `Pressure:`;
+    
+    console.log(uvIndexParagraph)
     // Clears the divElCurrentWeather from any previous data
     divElCurrentWeather.innerHTML = '';
     //Appends Weather Text
     divElCurrentWeather.append(newH3, newParagraphC, newParagraphF)
-    // Appends UV/ RELATIVE HUMIDITY/ AIR PRESSURE info
-    divElDetailsOther.append(uvIndexParagraph, relativeHumidityParagraph, airPressureParagraph);
+    //Clears the divElDetailsOther from any previous data
+    divElUv.innerHTML = '';
+    // Append UV/ /  info
+    divElUv.append(uvIndexParagraphText, uvIndexParagraph);
+    //Clears the divElDetailsOther from any previous data
+    divElHumidity.innerHTML = '';
+    //Append RELATIVE HUMIDITY info
+    divElHumidity.append(relativeHumidityParagraphText, relativeHumidityParagraph);
+    //Clears the divElDetailsOther from any previous data
+    divElPressure.innerHTML = '';
+    //Append AIR PRESSUREinfo
+    divElPressure.append(airPressureParagraphText, airPressureParagraph);
+
+    // ! divElDetailsOther.append(uvIndexParagraph, relativeHumidityParagraph, airPressureParagraph);
 
     // Clears city name div 
     weatherApp.cityNameDiv.innerHTML = '';
