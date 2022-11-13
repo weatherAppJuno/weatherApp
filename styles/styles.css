@@ -235,6 +235,14 @@ h1, h2, h3, p {
   padding: 0;
 }
 
+fieldset, input {
+  border: none;
+}
+
+button {
+  border: 1px solid #3c66a9;
+}
+
 .wrapper {
   max-width: 1260px;
   width: 90%;
@@ -242,24 +250,49 @@ h1, h2, h3, p {
 }
 
 h1 {
+  font-size: 3.5rem;
+  color: #000;
+  text-transform: uppercase;
   text-align: center;
-  padding: 10%;
-  margin: 0;
-  color: white;
 }
 
-fieldset {
-  border: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+h2 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+label, button {
+  font-size: 1.5rem;
+}
+
+input {
+  font-size: 2rem;
+}
+
+button {
+  color: #F9F9F9;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: #c3d4ea;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.copyrightJuno, .createdBy {
+  color: #c3d4ea;
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 .top {
@@ -274,43 +307,74 @@ fieldset {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  height: 45vh;
+  height: 50vh;
   background-image: url(../assets/header-photo-two.jpg);
   background-position: top center;
   background-size: cover;
 }
-
-header h1 {
-  color: #000;
-  font-size: 3.5rem;
-  padding: 0;
-  text-transform: uppercase;
+.top .wrapper {
+  background-color: rgba(249, 249, 249, 0.5);
+  border-radius: 5px;
+}
+.top h1 {
+  padding-top: 40px;
 }
 
-.searchForm label {
-  font-size: 1.5rem;
+.searchForm {
+  padding: 20px 0 40px 0;
+}
+.searchForm fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .searchForm input {
   width: 50%;
-  margin: 20px auto;
-  border: none;
-  font-size: 2rem;
+  padding: 10px;
+  margin: 20px 0;
 }
 .searchForm button {
-  width: 30%;
-  font-size: 1.5rem;
-  padding: 5px;
-  text-transform: uppercase;
+  width: 50%;
+  padding: 15px;
+  background-color: #3c66a9;
+  border-radius: 45px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.searchForm button:hover, .searchForm button:focus {
+  background-color: #8ba5cf;
+  color: #3c66a9;
 }
 
 .accuweather {
   width: 100%;
-  height: 45vh;
+  min-height: 45vh;
   background-color: #c3d4ea;
 }
-.accuweather .currentWeather {
-  width: 70%;
-  margin: 0 auto;
+.accuweather .dataContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.accuweather .dataContainer .cityName {
+  padding: 20px 0 10px 0;
+}
+.accuweather .dataContainer .currentWeather {
+  width: 75%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -319,16 +383,31 @@ header h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 10px 0;
 }
-.accuweather .currentWeather h3 {
-  font-size: 1.8rem;
+.accuweather .dataContainer .detailsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 75%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
-.accuweather .currentWeather p {
-  font-size: 2.8rem;
+.accuweather .dataContainer .detailsWind,
+.accuweather .dataContainer .detailsOther {
+  padding: 20px;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+}
+.accuweather .dataContainer .detailsWind p,
+.accuweather .dataContainer .detailsOther p {
+  margin: 5px 0;
 }
 
 footer {
   width: 100%;
+  height: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -344,21 +423,7 @@ footer {
           justify-content: center;
   background-color: #3c66a9;
 }
-footer .copyrightJuno, footer .createdBy {
-  color: #c3d4ea;
-  width: 50%;
-  margin: 0 auto;
-}
-footer .copyrightJuno a, footer .createdBy a {
-  text-decoration: none;
-  color: #c3d4ea;
-}
-footer .copyrightJuno {
-  text-align: center;
-  padding-top: 10px;
-}
-footer .createdBy {
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 5px 0;
+footer a:hover,
+footer a:focus {
+  color: #F9F9F9;
 }
