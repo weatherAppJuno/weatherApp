@@ -12,7 +12,7 @@
     
     <main>
         <!-- TOP SECTION -->
-        <section class="top">
+        <section class="top" id="topDayNight">
             <div class="wrapper">
                 <header>
                     <h1>Ontario Weather App</h1>
@@ -20,14 +20,14 @@
                 <form action="#" class="searchForm">
                     <fieldset>
                         <label for="searchInput" name="searchInput">Enter the City Whose Weather You Want to Check!</label>
-                        <input type="text" id="searchInput" name="searchInput">
+                        <input type="text" id="searchInput" name="searchInput" placeholder="Ex: Toronto" required>
                         <button type="submit">Submit</button>
                     </fieldset>
                 </form>
             </div>  <!-- END .wrapper -->      
         </section>
         <!-- ACCUWEATHER INFO SECTION-->
-        <section class="accuweather">
+        <section id="dayNight" class="accuweather">
             <div class="wrapper dataContainer">
                 <div class="cityName">
                     <!-- City name h2 -->
@@ -40,21 +40,21 @@
                         <!-- Wind data -->
                     </div>
                     <div class="detailsOther">
+                        <div class="uv"></div>
+                        <div class="humidity"></div>
+                        <div class="pressure"></div>
                         <!-- UV/Humidity/Pressure -->
-                    </div>
-                </div>
-            </div> 
+                    </div> <!-- END .detailsOther-->
+                </div><!-- END .detailsContainer-->
+            </div> <!-- END .wrapper .dataContainer-->
         </section>
     </main>
     <!-- FOOTER -->
     <footer>
-        <div class="copyrightJuno">
-            <p> Copyright&copy;Created at Juno College</p>
-        </div>
-
-        <div class="createdBy">
-            <p>Created by Daniela Parra<a href="https://github.com/parradaniela">(GitHub)</a> and Radojko <a href="#">( GitHub link) </a></p>
-        </div>
+        <div class="wrapper">
+            <p class="copyrightJuno">Copyright &copy; Created at <a href="https://junocollege.com/">Juno College of Technology</a></p>
+            <p class="createdBy">Created by <a href="https://github.com/parradaniela">Daniela Parra</a> and <a href="https://github.com/RadojkoR">Radojko Radulovic</a></p>
+        </div> <!-- END .wrapper -->
     </footer>
     <script src="./js/app.js"></script>
 </body>

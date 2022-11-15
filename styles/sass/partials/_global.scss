@@ -10,6 +10,14 @@ h1, h2, h3, p {
     padding: 0;
 }
 
+fieldset, input {
+    border: none;
+}
+
+button {
+    border: 1px solid variables.$primary;
+}
+
 .wrapper {
     max-width: 1260px;
     width: 90%;

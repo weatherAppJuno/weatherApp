@@ -235,6 +235,14 @@ h1, h2, h3, p {
   padding: 0;
 }
 
+fieldset, input {
+  border: none;
+}
+
+button {
+  border: 1px solid #3c66a9;
+}
+
 .wrapper {
   max-width: 1260px;
   width: 90%;
@@ -242,24 +250,43 @@ h1, h2, h3, p {
 }
 
 h1 {
+  font-size: 3.5rem;
+  color: #000;
+  text-transform: uppercase;
   text-align: center;
-  padding: 10%;
-  margin: 0;
-  color: white;
 }
 
-fieldset {
-  border: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+h2 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+label, button {
+  font-size: 1.5rem;
+}
+
+input {
+  font-size: 2rem;
+}
+
+button {
+  color: #F9F9F9;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: #c3d4ea;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .top {
@@ -274,61 +301,52 @@ fieldset {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  height: 45vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   background-image: url(../assets/header-photo-two.jpg);
   background-position: top center;
   background-size: cover;
 }
-
-header h1 {
-  color: #000;
-  font-size: 3.5rem;
-  padding: 0;
-  text-transform: uppercase;
+.top .wrapper {
+  background-color: rgba(249, 249, 249, 0.5);
+  border-radius: 5px;
+}
+.top h1 {
+  padding-top: 40px;
 }
 
-.searchForm label {
-  font-size: 1.5rem;
-}
-.searchForm input {
-  width: 50%;
-  margin: 20px auto;
-  border: none;
-  font-size: 2rem;
-}
-.searchForm button {
-  width: 30%;
-  font-size: 1.5rem;
-  padding: 5px;
-  text-transform: uppercase;
-}
-
-.accuweather {
-  width: 100%;
-  height: 45vh;
-  background-color: #c3d4ea;
-}
-.accuweather .currentWeather {
-  width: 70%;
-  margin: 0 auto;
+.topDark {
+  background-image: url(../assets/header-photo-night.jpg);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-position: top center;
+  background-size: cover;
 }
-.accuweather .currentWeather h3 {
-  font-size: 1.8rem;
+.topDark .wrapper {
+  background-color: rgba(249, 249, 249, 0.5);
+  border-radius: 5px;
 }
-.accuweather .currentWeather p {
-  font-size: 2.8rem;
+.topDark h1 {
+  padding-top: 40px;
 }
 
-footer {
-  width: 100%;
+.searchForm {
+  padding: 20px 0 40px 0;
+}
+.searchForm fieldset {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -339,26 +357,180 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.searchForm input {
+  width: 50%;
+  padding: 10px;
+  margin: 20px 0;
+}
+.searchForm button {
+  width: 50%;
+  padding: 15px;
+  background-color: #3c66a9;
+  border-radius: 45px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.searchForm button:hover, .searchForm button:focus {
+  background-color: #8ba5cf;
+  color: #3c66a9;
+}
+
+.accuweather {
+  width: 100%;
+  min-height: 50vh;
+  background-color: #c3d4ea;
+  color: #1b2a42;
+}
+.accuweather .dataContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 70px 0;
+}
+.accuweather .dataContainer .cityName {
+  padding: 20px 0 10px 0;
+  border-bottom: 3px solid #8ba5cf;
+  margin-bottom: 30px;
+}
+.accuweather .dataContainer .currentWeather {
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #8ba5cf;
+}
+.accuweather .dataContainer .detailsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 75%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.accuweather .dataContainer .detailsWind,
+.accuweather .dataContainer .detailsOther {
+  padding: 20px;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+}
+.accuweather .dataContainer .detailsWind p,
+.accuweather .dataContainer .detailsOther p {
+  padding: 15px 0;
+  font-size: 1.5rem;
+}
+.accuweather .dataContainer .detailsWind .uv, .accuweather .dataContainer .detailsWind .humidity, .accuweather .dataContainer .detailsWind .pressure,
+.accuweather .dataContainer .detailsOther .uv,
+.accuweather .dataContainer .detailsOther .humidity,
+.accuweather .dataContainer .detailsOther .pressure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid rgba(139, 165, 207, 0.5);
+}
+
+.accuweatherDark {
+  background-color: #1b2a42;
+  color: #c3d4ea;
+  width: 100%;
+  min-height: 45vh;
+}
+.accuweatherDark .dataContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 70px 0;
+}
+.accuweatherDark .dataContainer .cityName {
+  padding: 20px 0 10px 0;
+  border-bottom: 3px solid #8ba5cf;
+  margin-bottom: 30px;
+}
+.accuweatherDark .dataContainer .currentWeather {
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #8ba5cf;
+}
+.accuweatherDark .dataContainer .detailsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 75%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.accuweatherDark .dataContainer .detailsWind,
+.accuweatherDark .dataContainer .detailsOther {
+  padding: 20px;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+}
+.accuweatherDark .dataContainer .detailsWind p,
+.accuweatherDark .dataContainer .detailsOther p {
+  padding: 15px 0;
+  font-size: 1.5rem;
+}
+.accuweatherDark .dataContainer .detailsWind .uv, .accuweatherDark .dataContainer .detailsWind .humidity, .accuweatherDark .dataContainer .detailsWind .pressure,
+.accuweatherDark .dataContainer .detailsOther .uv,
+.accuweatherDark .dataContainer .detailsOther .humidity,
+.accuweatherDark .dataContainer .detailsOther .pressure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid rgba(139, 165, 207, 0.5);
+}
+
+footer {
+  width: 100%;
   background-color: #3c66a9;
 }
-footer .copyrightJuno, footer .createdBy {
+footer p {
   color: #c3d4ea;
-  width: 50%;
-  margin: 0 auto;
-}
-footer .copyrightJuno a, footer .createdBy a {
-  text-decoration: none;
-  color: #c3d4ea;
-}
-footer .copyrightJuno {
-  text-align: center;
+  font-size: 1.2rem;
   padding-top: 10px;
-}
-footer .createdBy {
   text-align: center;
-  font-size: 0.9rem;
-  padding: 5px 0;
+}
+footer p:nth-child(2) {
+  font-size: 0.8rem;
+  padding-bottom: 10px;
+}
+footer a:hover,
+footer a:focus {
+  color: #F9F9F9;
 }

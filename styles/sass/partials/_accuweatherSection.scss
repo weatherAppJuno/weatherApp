@@ -2,50 +2,107 @@
 
 .accuweather {
     width: 100%;
-    height: 45vh;
+    min-height: 50vh;
     background-color: variables.$secondary;
+    color: variables.$dark;
 
-    .currentWeather {
-        width: 70%;
-        margin: 0 auto;
+    .dataContainer {
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
         align-items: center;
-        h3 {
-            font-size: 1.8rem;
+        padding: 70px 0;
+
+        .cityName {
+            padding: 20px 0 10px 0;
+            border-bottom: 3px solid variables.$tertiary;
+            margin-bottom: 30px;
         }
-        p {
-            font-size: 2.8rem;
+        
+        .currentWeather {
+            width: 75%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 2px solid variables.$tertiary;
+        }
+        
+        .detailsContainer {
+            display: flex;
+            width: 75%;
+            justify-content: center;
+            // border: 2px solid variables.$tertiary;
+            
+        }
+
+        .detailsWind,
+        .detailsOther {
+            padding: 20px;
+            flex-basis: 50%;
+
+            p {
+                padding: 15px 0;
+                font-size: 1.5rem;
+            }
+            .uv, .humidity, .pressure {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid rgb(variables.$tertiary, 0.5);
+            }
         }
     }
 }
-
-footer {
+.accuweatherDark {
+    background-color: variables.$dark;
+    color: variables.$secondary;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: variables.$primary;
-    .copyrightJuno, .createdBy {
-        color: variables.$secondary;
-         width: 50%;
-         margin: 0 auto;
-        a {
-            text-decoration: none;
-            color: variables.$secondary;
+    min-height: 45vh;
+
+    .dataContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 70px 0;
+
+        .cityName {
+            padding: 20px 0 10px 0;
+            border-bottom: 3px solid variables.$tertiary;
+            margin-bottom: 30px;
+        }
+        
+        .currentWeather {
+            width: 75%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 2px solid variables.$tertiary;
+        }
+        
+        .detailsContainer {
+            display: flex;
+            width: 75%;
+            justify-content: center;
+            // border: 2px solid variables.$tertiary;
+            
+        }
+
+        .detailsWind,
+        .detailsOther {
+            padding: 20px;
+            flex-basis: 50%;
+
+            p {
+                padding: 15px 0;
+                font-size: 1.5rem;
+            }
+            .uv, .humidity, .pressure {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid rgb(variables.$tertiary, 0.5);
+            }
         }
     }
 
-    .copyrightJuno {
-       text-align: center;
-       padding-top: 10px;
-    }
-
-    .createdBy {
-        text-align: center;
-        font-size: 0.9rem;
-        padding: 5px 0;
-    }
-
 }
+
