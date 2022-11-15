@@ -2,8 +2,9 @@
 
 .accuweather {
     width: 100%;
-    min-height: 45vh;
+    min-height: 50vh;
     background-color: variables.$secondary;
+    color: variables.$dark;
 
     .dataContainer {
         display: flex;
@@ -50,5 +51,58 @@
             }
         }
     }
+}
+.accuweatherDark {
+    background-color: variables.$dark;
+    color: variables.$secondary;
+    width: 100%;
+    min-height: 45vh;
+
+    .dataContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 70px 0;
+
+        .cityName {
+            padding: 20px 0 10px 0;
+            border-bottom: 3px solid variables.$tertiary;
+            margin-bottom: 30px;
+        }
+        
+        .currentWeather {
+            width: 75%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 2px solid variables.$tertiary;
+        }
+        
+        .detailsContainer {
+            display: flex;
+            width: 75%;
+            justify-content: center;
+            // border: 2px solid variables.$tertiary;
+            
+        }
+
+        .detailsWind,
+        .detailsOther {
+            padding: 20px;
+            flex-basis: 50%;
+
+            p {
+                padding: 15px 0;
+                font-size: 1.5rem;
+            }
+            .uv, .humidity, .pressure {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid rgb(variables.$tertiary, 0.5);
+            }
+        }
+    }
+
 }
 

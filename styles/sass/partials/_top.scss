@@ -20,6 +20,26 @@
     }
 }
 
+.topDark {
+   background-image: url(../assets/header-photo-night.jpg);
+   display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    background-position:top center;
+    background-size: cover;
+
+    .wrapper {
+        background-color: rgba(variables.$white, 0.5);
+        border-radius: 5px;
+    }
+
+    h1 {
+        padding-top: 40px;
+    }
+}
+
 .searchForm {
     padding: 20px 0 40px 0; 
 

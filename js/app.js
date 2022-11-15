@@ -6,9 +6,9 @@ const weatherApp = {};
     // Current conditions API endpoint
     // API key
 // weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
-// weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1';
+weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1';
 // weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
-weatherApp.apiKey = 'pO2zESA35RlIGQ36xPDv6xrcG7DaJVCK'; // Third key for testing
+// weatherApp.apiKey = 'pO2zESA35RlIGQ36xPDv6xrcG7DaJVCK'; // Third key for testing
 weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
@@ -115,13 +115,37 @@ weatherApp.callWeatherApi = (key) => {
             // WIND SPEED
             const windSpeedKm = data[0].Wind.Speed.Metric.Value; 
             const windDirection = data[0].Wind.Direction.English; 
+            // DAY/NIGHT TIME
+            const isDayTime = data[0].IsDayTime;
 
             // TODO: weather icon (stretch goal), isDayTime (stretch goal)
+ 
+            if (isDayTime === true) {
+                const dark = document.querySelector('#dayNight');
+                const topDark = document.querySelector("#topDayNight")
+                topDark.classList.remove('topDark');
+                topDark.classList.add('top');
+                dark.classList.remove('accuweatherDark')
+                console.log("day");
+                dark.classList.add('accuweather');
+                
+            } else {
+                const dark = document.querySelector('#dayNight');
+                const topDark = document.querySelector("#topDayNight")
+                console.log("night");
+                topDark.classList.remove('top');
+                topDark.classList.add('topDark');
+                dark.classList.remove('accuweather');
+                dark.classList.add('accuweatherDark');  
+            };
+            
+            
 
+            
 
         // Pass these variables as parameters into the following method
-        weatherApp.appendDetails(tempC, tempF, weatherText, weatherApp.cityName, uvIndex, uvIndexText, relativeHumidity, airPressure)
-        weatherApp.appendWindDetails(windChillC, windChillF, windSpeedKm, windDirection)
+        weatherApp.appendDetails(tempC, tempF, weatherText, weatherApp.cityName, uvIndex, uvIndexText, relativeHumidity, airPressure, isDayTime);
+        weatherApp.appendWindDetails(windChillC, windChillF, windSpeedKm, windDirection);
         });
     }
     
@@ -169,7 +193,7 @@ weatherApp.appendDetails = (tempC, tempF, weatherText, cityName, uvIndex, uvInde
     airPressureParagraph.innerText = `${airPressure}mb`;
     airPressureParagraphText.innerText = `Pressure:`;
     
-    console.log(uvIndexParagraph)
+    
     // Clears the divElCurrentWeather from any previous data
     divElCurrentWeather.innerHTML = '';
     //Appends Weather Text
@@ -209,6 +233,8 @@ weatherApp.appendWindDetails = (tempC, tempF, speed, direction) => {
     //Appends data to the div
     weatherApp.detailsWindDiv.append(windChillParagraph, windSpeedParagraph, windDirectionParagraph);
 }
+
+
 
 // Call the init method
 weatherApp.init();

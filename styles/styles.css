@@ -316,6 +316,33 @@ a {
   padding-top: 40px;
 }
 
+.topDark {
+  background-image: url(../assets/header-photo-night.jpg);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-position: top center;
+  background-size: cover;
+}
+.topDark .wrapper {
+  background-color: rgba(249, 249, 249, 0.5);
+  border-radius: 5px;
+}
+.topDark h1 {
+  padding-top: 40px;
+}
+
 .searchForm {
   padding: 20px 0 40px 0;
 }
@@ -351,8 +378,9 @@ a {
 
 .accuweather {
   width: 100%;
-  min-height: 45vh;
+  min-height: 50vh;
   background-color: #c3d4ea;
+  color: #1b2a42;
 }
 .accuweather .dataContainer {
   display: -webkit-box;
@@ -409,6 +437,76 @@ a {
 .accuweather .dataContainer .detailsOther .uv,
 .accuweather .dataContainer .detailsOther .humidity,
 .accuweather .dataContainer .detailsOther .pressure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid rgba(139, 165, 207, 0.5);
+}
+
+.accuweatherDark {
+  background-color: #1b2a42;
+  color: #c3d4ea;
+  width: 100%;
+  min-height: 45vh;
+}
+.accuweatherDark .dataContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 70px 0;
+}
+.accuweatherDark .dataContainer .cityName {
+  padding: 20px 0 10px 0;
+  border-bottom: 3px solid #8ba5cf;
+  margin-bottom: 30px;
+}
+.accuweatherDark .dataContainer .currentWeather {
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #8ba5cf;
+}
+.accuweatherDark .dataContainer .detailsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 75%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.accuweatherDark .dataContainer .detailsWind,
+.accuweatherDark .dataContainer .detailsOther {
+  padding: 20px;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+}
+.accuweatherDark .dataContainer .detailsWind p,
+.accuweatherDark .dataContainer .detailsOther p {
+  padding: 15px 0;
+  font-size: 1.5rem;
+}
+.accuweatherDark .dataContainer .detailsWind .uv, .accuweatherDark .dataContainer .detailsWind .humidity, .accuweatherDark .dataContainer .detailsWind .pressure,
+.accuweatherDark .dataContainer .detailsOther .uv,
+.accuweatherDark .dataContainer .detailsOther .humidity,
+.accuweatherDark .dataContainer .detailsOther .pressure {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
