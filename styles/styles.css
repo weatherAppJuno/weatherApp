@@ -393,12 +393,14 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 70px 0;
+  padding: 20px 0;
 }
 .accuweather .dataContainer .cityName {
   padding: 20px 0 10px 0;
-  border-bottom: 3px solid #8ba5cf;
   margin-bottom: 30px;
+}
+.accuweather .dataContainer .cityName h2 {
+  border-bottom: 3px solid #8ba5cf;
 }
 .accuweather .dataContainer .currentWeather {
   width: 75%;
@@ -433,10 +435,13 @@ a {
   padding: 15px 0;
   font-size: 1.5rem;
 }
-.accuweather .dataContainer .detailsWind .uv, .accuweather .dataContainer .detailsWind .humidity, .accuweather .dataContainer .detailsWind .pressure,
+.accuweather .dataContainer .detailsWind .uv, .accuweather .dataContainer .detailsWind .humidity, .accuweather .dataContainer .detailsWind .pressure, .accuweather .dataContainer .detailsWind .windChill, .accuweather .dataContainer .detailsWind .windSpeed, .accuweather .dataContainer .detailsWind .windDirection,
 .accuweather .dataContainer .detailsOther .uv,
 .accuweather .dataContainer .detailsOther .humidity,
-.accuweather .dataContainer .detailsOther .pressure {
+.accuweather .dataContainer .detailsOther .pressure,
+.accuweather .dataContainer .detailsOther .windChill,
+.accuweather .dataContainer .detailsOther .windSpeed,
+.accuweather .dataContainer .detailsOther .windDirection {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -528,7 +533,6 @@ footer p {
 }
 footer p:nth-child(2) {
   font-size: 0.8rem;
-  padding-bottom: 10px;
 }
 footer a:hover,
 footer a:focus {

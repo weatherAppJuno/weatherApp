@@ -11,10 +11,9 @@ footer {
     }
     p:nth-child(2) {
         font-size: 0.8rem;
-        padding-bottom: 10px;
     }
     a:hover,
     a:focus {
         color: variables.$white;
-    }
+    } 
 }
