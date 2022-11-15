@@ -6,9 +6,9 @@ const weatherApp = {};
     // Current conditions API endpoint
     // API key
 // weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
-weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1';
 // weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
 // weatherApp.apiKey = 'pO2zESA35RlIGQ36xPDv6xrcG7DaJVCK'; // Third key for testing
+weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1'; // Fourth Key
 weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
@@ -41,17 +41,13 @@ weatherApp.getUserInput = () => {
 
 // Mthod that constructs a new URL object using the user's input and globally-scoped variables
 weatherApp.callSearchApi = (query) => {
-    // construct new URL with the following params:
-        // Api Key
-        // Cities Search API endpoint 
-        // User's input goes into the q: property
+    // construct new URL with the needed parameters
     const url = new URL(weatherApp.searchEndpoint);
     url.search = new URLSearchParams({
         apikey: weatherApp.apiKey,
         q: query
     });
-
-    // Use this newly constructed URL object to call the Cities Search API 
+    // Use the URL object to call the Cities Search API 
     fetch(url)
         .then(res => {
             return res.json();
@@ -62,10 +58,10 @@ weatherApp.callSearchApi = (query) => {
                 // Capture the following properties and store them into variables:
                 // the Key property  
                 const cityKey = city.Key;
-                // Reassign the weatherApp.cityName variable so that we can use it in the appendDetails method later
+                // Reassign the weatherApp.cityName variable so that we can use it in the appendMainDetails method later
                 weatherApp.cityName = city.LocalizedName;
-                // Passes the cityKey variable as a parameter to the callWeatherApi method
-                weatherApp.callWeatherApi(cityKey);
+                // Passes the cityKey variable as a parameter to the getWeatherDetails method
+                weatherApp.getWeatherDetails(cityKey);
                
                 // Province - for stretch goal (if we expand to all of Canada - will also have to change starting endpoint) - AdministrativeArea.EnglishName
                 // GeoPosition (longitude and lattitude) - for stretch goal 
@@ -77,155 +73,99 @@ weatherApp.callSearchApi = (query) => {
 }
 
 // Method that takes the first API call's Key property as a parameter
-weatherApp.callWeatherApi = (key) => {
-        // use this parameter to update the Current Conditions API endpoint
-        const url = new URL(weatherApp.weatherEndpoint + key);
+weatherApp.getWeatherDetails = (key) => {
+    // use this parameter to update the Current Conditions API endpoint
+    const url = new URL(weatherApp.weatherEndpoint + key);
+    url.search = new URLSearchParams({
+        apikey: weatherApp.apiKey,
+        details: true
+    });
 
-        url.search = new URLSearchParams({
-            apikey: weatherApp.apiKey,
-            details: true
-        });
-
-        // Call the new endpoint for the API
-        fetch(url)
+    // Call the new endpoint for the API
+    fetch(url)
         .then(res => {
             return res.json();
         })
         .then(data => {
-            // We capture the following properties and store them into variables:
-            // City name, temperature (F and C), weather text, weather icon (stretch goal), isDayTime (stretch goal)
             console.log(data[0])
-            // TEMPERATURE METRIC
-            const tempC = data[0].Temperature.Metric.Value;
-            // TEMPERATURE INPERIAL
-            const tempF = data[0].Temperature.Imperial.Value;
-            // WEATHER TEXT
+            // Main details - Weather text, temperature
             const weatherText = data[0].WeatherText;
-            //UV INDEX
-            const uvIndex = data[0].UVIndex;
-            //UV INDEX TEXT
-            const uvIndexText = data[0].UVIndexText;
-            // HUMIDITY
-            const relativeHumidity = data[0].RelativeHumidity;
-            //AIR PRESSURE
-            const airPressure = data[0].Pressure.Metric.Value;               
-            // WIND CHILL 
+            const tempC = data[0].Temperature.Metric.Value;
+            const tempF = data[0].Temperature.Imperial.Value;
+            // WInd details - wind chill, wind speed, wind direction
             const windChillC = data[0].WindChillTemperature.Metric.Value;    
             const windChillF = data[0].WindChillTemperature.Imperial.Value; 
-            // WIND SPEED
             const windSpeedKm = data[0].Wind.Speed.Metric.Value; 
             const windDirection = data[0].Wind.Direction.English; 
-            // DAY/NIGHT TIME
+            // Other details - UV index, UV Index text, humidity, air pressure
+            const uvIndex = data[0].UVIndex;
+            const uvIndexText = data[0].UVIndexText;
+            const relativeHumidity = data[0].RelativeHumidity;
+            const airPressure = data[0].Pressure.Metric.Value;               
+            // Daytime boolean 
             const isDayTime = data[0].IsDayTime;
-
-            // TODO: weather icon (stretch goal), isDayTime (stretch goal)
- 
-            if (isDayTime === true) {
-                const dark = document.querySelector('#dayNight');
-                const topDark = document.querySelector("#topDayNight")
-                topDark.classList.remove('topDark');
-                topDark.classList.add('top');
-                dark.classList.remove('accuweatherDark')
-                console.log("day");
-                dark.classList.add('accuweather');
-                
-            } else {
-                const dark = document.querySelector('#dayNight');
-                const topDark = document.querySelector("#topDayNight")
-                console.log("night");
-                topDark.classList.remove('top');
-                topDark.classList.add('topDark');
-                dark.classList.remove('accuweather');
-                dark.classList.add('accuweatherDark');  
-            };
-            
-            
-
-            
-
-        // Pass these variables as parameters into the following method
-        weatherApp.appendDetails(tempC, tempF, weatherText, weatherApp.cityName, uvIndex, uvIndexText, relativeHumidity, airPressure, isDayTime);
-        weatherApp.appendWindDetails(windChillC, windChillF, windSpeedKm, windDirection);
+            // Pass variables as parameters into the following method
+            weatherApp.toggleDarkStyles(isDayTime);
+            weatherApp.appendMainDetails(tempC, tempF, weatherText, weatherApp.cityName);
+            weatherApp.appendWindDetails(windChillC, windChillF, windSpeedKm, windDirection);
+            weatherApp.appendOtherDetails(uvIndex, uvIndexText, relativeHumidity, airPressure);
         });
-    }
+}
     
-// Make a method that accepts 4 parameters, and appends them to a div on the page (could also be a UL with LIs)
-weatherApp.appendDetails = (tempC, tempF, weatherText, cityName, uvIndex, uvIndexText, relativeHumidity, airPressure) => {
+weatherApp.toggleDarkStyles = (boolean) => {
+    if (boolean === true) {
+        const dark = document.querySelector('#dayNight');
+        const topDark = document.querySelector("#topDayNight")
+        topDark.classList.remove('topDark');
+        topDark.classList.add('top');
+        dark.classList.remove('accuweatherDark')
+        console.log("day");
+        dark.classList.add('accuweather');
+        
+    } else {
+        const dark = document.querySelector('#dayNight');
+        const topDark = document.querySelector("#topDayNight")
+        console.log("night");
+        topDark.classList.remove('top');
+        topDark.classList.add('topDark');
+        dark.classList.remove('accuweather');
+        dark.classList.add('accuweatherDark');  
+    };
+}
+    
+// Method to append main details (temperature, weather text, city name) to page
+weatherApp.appendMainDetails = (tempC, tempF, weatherText, cityName) => {
     //Elements to append
     const newH2 = document.createElement('h2');
     const newH3 = document.createElement('h3');
     const newParagraphC = document.createElement('p');
     const newParagraphF = document.createElement('p');
-    //UV index
-    const uvIndexParagraph = document.createElement('p');
-    const uvIndexParagraphText = document.createElement('p');
-    // Humidity
-    const relativeHumidityParagraph = document.createElement('p');
-    const relativeHumidityParagraphText = document.createElement('p');
-    // Air pressure
-    const airPressureParagraph = document.createElement('p');
-    const airPressureParagraphText = document.createElement('p');
-    //Grab the div class currentWeather
+    //Container div to append to
     const divElCurrentWeather = document.querySelector('.currentWeather');
-    //! Grab the div class detailsOther
-    const divElDetailsOther = document.querySelector('.detailsOther');
-    // Grab the div class uv
-    const divElUv = document.querySelector('.uv');
-    // Grab the div class humidity
-    const divElHumidity = document.querySelector('.humidity');
-    // Grab the div class pressure
-    const divElPressure = document.querySelector('.pressure');
-
-    // Add UV index and UV index text
-    // Wind direction English, wind speed metric (unit and value), Wind Chill Temperature (F and C), relative humidity (%), pressure (if we have time) 
-
-    newH2.innerText = cityName;
+    // Update element text
+    newParagraphC.innerHTML = `${tempC}&#8451;`;
+    newParagraphF.innerHTML = `${tempF}&#8457;`;
     newH3.innerText = weatherText;
-    newParagraphC.innerText = tempC;
-    newParagraphF.innerText = tempF;
-    newParagraphC.innerHTML = `${tempC }&#8451;`;
-    newParagraphF.innerText = `${tempF}F`;
+    newH2.innerText = cityName;
+    // newParagraphC.innerText = tempC;
+    // newParagraphF.innerText = tempF;
 
-    uvIndexParagraph.innerText = `${uvIndex} ${uvIndexText}`;
-    uvIndexParagraphText.innerText = `Max UV Index:`;
-    relativeHumidityParagraph.innerText = `${relativeHumidity}%`;
-    relativeHumidityParagraphText.innerText = `Humidity:`;
-    airPressureParagraph.innerText = `${airPressure}mb`;
-    airPressureParagraphText.innerText = `Pressure:`;
-    
-    
-    // Clears the divElCurrentWeather from any previous data
-    divElCurrentWeather.innerHTML = '';
-    //Appends Weather Text
-    divElCurrentWeather.append(newH3, newParagraphC, newParagraphF)
-    //Clears the divElDetailsOther from any previous data
-    divElUv.innerHTML = '';
-    // Append UV/ /  info
-    divElUv.append(uvIndexParagraphText, uvIndexParagraph);
-    //Clears the divElDetailsOther from any previous data
-    divElHumidity.innerHTML = '';
-    //Append RELATIVE HUMIDITY info
-    divElHumidity.append(relativeHumidityParagraphText, relativeHumidityParagraph);
-    //Clears the divElDetailsOther from any previous data
-    divElPressure.innerHTML = '';
-    //Append AIR PRESSUREinfo
-    divElPressure.append(airPressureParagraphText, airPressureParagraph);
-
-    // ! divElDetailsOther.append(uvIndexParagraph, relativeHumidityParagraph, airPressureParagraph);
-
-    // Clears city name div 
+    // Clears old data from divs
     weatherApp.cityNameDiv.innerHTML = '';
-    // Appends the newH2
+    divElCurrentWeather.innerHTML = '';
+    // Appends new data
     weatherApp.cityNameDiv.append(newH2);
+    divElCurrentWeather.append(newH3, newParagraphC, newParagraphF)
 }
 
+// Method to append wind details (windchill, wind speed, wind direction) to page
 weatherApp.appendWindDetails = (tempC, tempF, speed, direction) => {
     // Elements to append
     const windChillParagraph = document.createElement('p');
     const windSpeedParagraph = document.createElement('p');
     const windDirectionParagraph = document.createElement('p');
     // Updates inner HTML
-    windChillParagraph.innerHTML = `Wind Chill: ${tempC}°C / ${tempF}°F`;
+    windChillParagraph.innerHTML = `Wind Chill: ${tempC}&#8451; / ${tempF}&#8457;`;
     windSpeedParagraph.innerHTML = `Wind Speed: ${speed} km/h`;
     windDirectionParagraph.innerHTML = `Wind Direction: ${direction}`;
     //Clears old data from the div
@@ -234,7 +174,32 @@ weatherApp.appendWindDetails = (tempC, tempF, speed, direction) => {
     weatherApp.detailsWindDiv.append(windChillParagraph, windSpeedParagraph, windDirectionParagraph);
 }
 
+// Method to append other details (uv index, uv index text, humidity, pressure) to page
+weatherApp.appendOtherDetails = (uvIndex, uvIndexText, relativeHumidity, airPressure) => {
+    // Elements to append
+    const uvIndexParagraph = document.createElement('p');
+    const relativeHumidityParagraph = document.createElement('p');
+    const airPressureParagraph = document.createElement('p');
+    // Containers to append to 
+    const divElUv = document.querySelector('.uv');
+    const divElHumidity = document.querySelector('.humidity');
+    const divElPressure = document.querySelector('.pressure');
+    //! Grab the div class detailsOther
+    // const divElDetailsOther = document.querySelector('.detailsOther');
 
+    // Update element text
+    uvIndexParagraph.innerText = `${uvIndex} ${uvIndexText}`;
+    relativeHumidityParagraph.innerText = `${relativeHumidity}%`;
+    airPressureParagraph.innerText = `${airPressure}mb`;
+    //Clears previous data
+    divElUv.innerHTML = '';
+    divElHumidity.innerHTML = '';
+    divElPressure.innerHTML = '';
+    // Appends new data
+    divElUv.append(uvIndexParagraphText, uvIndexParagraph);
+    divElHumidity.append(relativeHumidityParagraphText, relativeHumidityParagraph);
+    divElPressure.append(airPressureParagraphText, airPressureParagraph);
+}
 
 // Call the init method
 weatherApp.init();
