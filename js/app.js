@@ -138,10 +138,7 @@ weatherApp.callWeatherApi = (key) => {
                 dark.classList.remove('accuweather');
                 dark.classList.add('accuweatherDark');  
             };
-            
-            
-
-            
+             
 
         // Pass these variables as parameters into the following method
         weatherApp.appendDetails(tempC, tempF, weatherText, weatherApp.cityName, uvIndex, uvIndexText, relativeHumidity, airPressure, isDayTime);
