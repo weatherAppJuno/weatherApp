@@ -14,8 +14,10 @@
 
         .cityName {
             padding: 20px 0 10px 0;
-            border-bottom: 3px solid variables.$tertiary;
             margin-bottom: 30px;
+            h2 {
+                border-bottom: 3px solid variables.$tertiary;
+            }
         }
         
         .currentWeather {
@@ -44,7 +46,7 @@
                 padding: 15px 0;
                 font-size: 1.5rem;
             }
-            .uv, .humidity, .pressure {
+            .uv, .humidity, .pressure, .windChill, .windSpeed, .windDirection {
                 display: flex;
                 justify-content: space-between;
                 border-bottom: 1px solid rgb(variables.$tertiary, 0.5);
@@ -83,7 +85,6 @@
             display: flex;
             width: 75%;
             justify-content: center;
-            // border: 2px solid variables.$tertiary;
             
         }
 
