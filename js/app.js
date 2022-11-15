@@ -1,10 +1,7 @@
 // Create an app object (weatherApp)
 const weatherApp = {};
   
-// Initialize globally scoped variables
-    // Cities search API endpoint (we are using the endpoint for Ontario, Canada)
-    // Current conditions API endpoint
-    // API key
+// Globally scoped variables
 // weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
 // weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
 // weatherApp.apiKey = 'pO2zESA35RlIGQ36xPDv6xrcG7DaJVCK'; // Third key for testing
@@ -12,12 +9,8 @@ weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1'; // Fourth Key
 weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
-// Variables to append
+// Variable to append later
 weatherApp.cityName;
-
-// Empty divs in HTML that will have data appended
-weatherApp.cityNameDiv = document.querySelector('.cityName');
-weatherApp.detailsWindDiv = document.querySelector('.detailsWind');
 
 // Construct the init method
 weatherApp.init = () => {
@@ -26,20 +19,19 @@ weatherApp.init = () => {
 
 // Method that attaches an event listener to the form
 weatherApp.getUserInput = () => {
-    document.querySelector(".searchForm").addEventListener('submit', function (event) {
+    document.querySelector(".searchForm").addEventListener('submit', (event) => {
         event.preventDefault();
         const inputEl = document.querySelector('#searchInput');
         // When user submits form, store the value of the input into a variable
         const inputValue = event.originalTarget[1].value;
         // Pass inputValue into the API call method below as q
         weatherApp.callSearchApi(inputValue);
-        // Clear the text in the input field with .textContent = '';
+        // Clear the text in the input field
         inputEl.value = '';
     });
 }    
 
-
-// Mthod that constructs a new URL object using the user's input and globally-scoped variables
+// Method that constructs a new URL object using the user's input
 weatherApp.callSearchApi = (query) => {
     // construct new URL with the needed parameters
     const url = new URL(weatherApp.searchEndpoint);
@@ -53,21 +45,13 @@ weatherApp.callSearchApi = (query) => {
             return res.json();
         })
         .then(resJSON => {
-            console.log(resJSON);
             resJSON.forEach((city) => {
-                // Capture the following properties and store them into variables:
-                // the Key property  
+                // Store Key property for second API call
                 const cityKey = city.Key;
-                // Reassign the weatherApp.cityName variable so that we can use it in the appendMainDetails method later
+                // Reassign the weatherApp.cityName variable to use it later in the appendMainDetails method
                 weatherApp.cityName = city.LocalizedName;
-                // Passes the cityKey variable as a parameter to the getWeatherDetails method
+                // Pass the cityKey variable to the getWeatherDetails method
                 weatherApp.getWeatherDetails(cityKey);
-               
-                // Province - for stretch goal (if we expand to all of Canada - will also have to change starting endpoint) - AdministrativeArea.EnglishName
-                // GeoPosition (longitude and lattitude) - for stretch goal 
-                // console.log(city.AdministrativeArea.EnglishName);
-                // console.log(city.GeoPosition.Longitude);
-                // console.log(city.GeoPosition.Latitude);
             });
         });
 }
@@ -80,14 +64,12 @@ weatherApp.getWeatherDetails = (key) => {
         apikey: weatherApp.apiKey,
         details: true
     });
-
     // Call the new endpoint for the API
     fetch(url)
         .then(res => {
             return res.json();
         })
         .then(data => {
-            console.log(data[0])
             // Main details - Weather text, temperature
             const weatherText = data[0].WeatherText;
             const tempC = data[0].Temperature.Metric.Value;
@@ -104,7 +86,7 @@ weatherApp.getWeatherDetails = (key) => {
             const airPressure = data[0].Pressure.Metric.Value;               
             // Daytime boolean 
             const isDayTime = data[0].IsDayTime;
-            // Pass variables as parameters into the following method
+            // Pass variables as parameters into other methods
             weatherApp.toggleDarkStyles(isDayTime);
             weatherApp.appendMainDetails(tempC, tempF, weatherText, weatherApp.cityName);
             weatherApp.appendWindDetails(windChillC, windChillF, windSpeedKm, windDirection);
@@ -112,6 +94,7 @@ weatherApp.getWeatherDetails = (key) => {
         });
 }
     
+// Method to change site styles based on isDayTime boolean
 weatherApp.toggleDarkStyles = (boolean) => {
     if (boolean === true) {
         const dark = document.querySelector('#dayNight');
@@ -119,13 +102,11 @@ weatherApp.toggleDarkStyles = (boolean) => {
         topDark.classList.remove('topDark');
         topDark.classList.add('top');
         dark.classList.remove('accuweatherDark')
-        console.log("day");
         dark.classList.add('accuweather');
         
     } else {
         const dark = document.querySelector('#dayNight');
         const topDark = document.querySelector("#topDayNight")
-        console.log("night");
         topDark.classList.remove('top');
         topDark.classList.add('topDark');
         dark.classList.remove('accuweather');
@@ -135,26 +116,24 @@ weatherApp.toggleDarkStyles = (boolean) => {
     
 // Method to append main details (temperature, weather text, city name) to page
 weatherApp.appendMainDetails = (tempC, tempF, weatherText, cityName) => {
-    //Elements to append
+    // Elements to append
     const newH2 = document.createElement('h2');
     const newH3 = document.createElement('h3');
     const newParagraphC = document.createElement('p');
     const newParagraphF = document.createElement('p');
-    //Container div to append to
+    // Container div to append to
+    const divElCityName = document.querySelector('.cityName');
     const divElCurrentWeather = document.querySelector('.currentWeather');
     // Update element text
+    newH2.innerText = cityName;
+    newH3.innerText = weatherText;
     newParagraphC.innerHTML = `${tempC}&#8451;`;
     newParagraphF.innerHTML = `${tempF}&#8457;`;
-    newH3.innerText = weatherText;
-    newH2.innerText = cityName;
-    // newParagraphC.innerText = tempC;
-    // newParagraphF.innerText = tempF;
-
-    // Clears old data from divs
-    weatherApp.cityNameDiv.innerHTML = '';
+    // Clears previous data
+    divElCityName.innerHTML = '';
     divElCurrentWeather.innerHTML = '';
     // Appends new data
-    weatherApp.cityNameDiv.append(newH2);
+    divElCityName.append(newH2);
     divElCurrentWeather.append(newH3, newParagraphC, newParagraphF)
 }
 
@@ -164,14 +143,22 @@ weatherApp.appendWindDetails = (tempC, tempF, speed, direction) => {
     const windChillParagraph = document.createElement('p');
     const windSpeedParagraph = document.createElement('p');
     const windDirectionParagraph = document.createElement('p');
+    // Containers to append to 
+    const divElWindChill = document.querySelector('.windChillData');
+    const divElWindSpeed = document.querySelector('.windSpeedData');
+    const divElWindDirection = document.querySelector('.windDirectionData');
     // Updates inner HTML
-    windChillParagraph.innerHTML = `Wind Chill: ${tempC}&#8451; / ${tempF}&#8457;`;
-    windSpeedParagraph.innerHTML = `Wind Speed: ${speed} km/h`;
-    windDirectionParagraph.innerHTML = `Wind Direction: ${direction}`;
-    //Clears old data from the div
-    weatherApp.detailsWindDiv.innerHTML = '';
-    //Appends data to the div
-    weatherApp.detailsWindDiv.append(windChillParagraph, windSpeedParagraph, windDirectionParagraph);
+    windChillParagraph.innerHTML = `${tempC}&#8451; / ${tempF}&#8457;`;
+    windSpeedParagraph.innerHTML = `${speed} km/h`;
+    windDirectionParagraph.innerHTML = `${direction}`;
+    //Clears previous data
+    divElWindChill.innerHTML = '';
+    divElWindSpeed.innerHTML = '';
+    divElWindDirection.innerHTML = '';
+    //Appends new data
+    divElWindChill.append(windChillParagraph);
+    divElWindSpeed.append(windSpeedParagraph);
+    divElWindDirection.append(windDirectionParagraph);
 }
 
 // Method to append other details (uv index, uv index text, humidity, pressure) to page
@@ -181,12 +168,9 @@ weatherApp.appendOtherDetails = (uvIndex, uvIndexText, relativeHumidity, airPres
     const relativeHumidityParagraph = document.createElement('p');
     const airPressureParagraph = document.createElement('p');
     // Containers to append to 
-    const divElUv = document.querySelector('.uv');
-    const divElHumidity = document.querySelector('.humidity');
-    const divElPressure = document.querySelector('.pressure');
-    //! Grab the div class detailsOther
-    // const divElDetailsOther = document.querySelector('.detailsOther');
-
+    const divElUv = document.querySelector('.uvData');
+    const divElHumidity = document.querySelector('.humidityData');
+    const divElPressure = document.querySelector('.pressureData');
     // Update element text
     uvIndexParagraph.innerText = `${uvIndex} ${uvIndexText}`;
     relativeHumidityParagraph.innerText = `${relativeHumidity}%`;
@@ -196,9 +180,9 @@ weatherApp.appendOtherDetails = (uvIndex, uvIndexText, relativeHumidity, airPres
     divElHumidity.innerHTML = '';
     divElPressure.innerHTML = '';
     // Appends new data
-    divElUv.append(uvIndexParagraphText, uvIndexParagraph);
-    divElHumidity.append(relativeHumidityParagraphText, relativeHumidityParagraph);
-    divElPressure.append(airPressureParagraphText, airPressureParagraph);
+    divElUv.append(uvIndexParagraph);
+    divElHumidity.append(relativeHumidityParagraph);
+    divElPressure.append(airPressureParagraph);
 }
 
 // Call the init method
