@@ -228,6 +228,8 @@ html {
 
 html {
   font-size: 125%;
+  font-family: "Roboto", sans-serif;
+  color: #585858;
 }
 
 h1, h2, h3, p {
@@ -254,6 +256,8 @@ h1 {
   color: #000;
   text-transform: uppercase;
   text-align: center;
+  font-weight: 900;
+  color: #426599;
 }
 
 h2 {
@@ -380,7 +384,7 @@ a {
   width: 100%;
   min-height: 50vh;
   background-color: #c3d4ea;
-  color: #1b2a42;
+  color: #585858;
 }
 .accuweather .dataContainer {
   display: -webkit-box;
@@ -394,6 +398,9 @@ a {
       -ms-flex-align: center;
           align-items: center;
   padding: 20px 0;
+}
+.accuweather .dataContainer .localDate p {
+  font-size: 1.3rem;
 }
 .accuweather .dataContainer .cityName {
   padding: 20px 0 10px 0;
