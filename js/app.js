@@ -17,6 +17,7 @@ weatherApp.init = () => {
     weatherApp.getUserInput();
 }
 
+
 // Method that attaches an event listener to the form
 weatherApp.getUserInput = () => {
     document.querySelector(".searchForm").addEventListener('submit', (event) => {
@@ -95,6 +96,29 @@ weatherApp.getWeatherDetails = (key) => {
             weatherApp.appendOtherDetails(uvIndex, uvIndexText, relativeHumidity, airPressure);
         });
 }
+
+//Method to add current date and clock
+weatherApp.localDate = () => {    
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const time = new Date();
+    let month = months[time.getMonth()];
+    let day = days[time.getDay()];
+    let year = time.getFullYear();
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    let seconds = time.getSeconds();
+    console.log(`${day} ${month} ${time.getDate()} ${year} ${hours}:${minutes}:${seconds}`);
+    // Container div to append to
+    const divElLocalDate = document.querySelector('.localDate p');
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+    // Update element text
+    divElLocalDate.innerText = `${day}  ${month}  ${time.getDate()}. ${year} ${hours}:${minutes}:${seconds}`;
+}
+setInterval(weatherApp.localDate, 1000);
+weatherApp.localDate();
 
 // Method to change site styles based on isDayTime boolean
 weatherApp.toggleDarkStyles = (boolean) => {

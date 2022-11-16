@@ -4,13 +4,19 @@
     width: 100%;
     min-height: 50vh;
     background-color: variables.$secondary;
-    color: variables.$dark;
+    color: variables.$fontColor;
 
     .dataContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 20px 0;
+
+         .localDate {
+            p {
+                font-size: 1.3rem;
+            }
+        }
 
         .cityName {
             padding: 20px 0 10px 0;
