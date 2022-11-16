@@ -3,9 +3,9 @@ const weatherApp = {};
   
 // Globally scoped variables
 // weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
-// weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
+weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
 // weatherApp.apiKey = 'pO2zESA35RlIGQ36xPDv6xrcG7DaJVCK'; // Third key for testing
-weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1'; // Fourth Key
+// weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1'; // Fourth Key
 weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
@@ -70,10 +70,12 @@ weatherApp.getWeatherDetails = (key) => {
             return res.json();
         })
         .then(data => {
+            console.log(data[0]);
             // Main details - Weather text, temperature
-            const weatherText = data[0].WeatherText;
             const tempC = data[0].Temperature.Metric.Value;
             const tempF = data[0].Temperature.Imperial.Value;
+            const weatherText = data[0].WeatherText;
+            const weatherIcon = data[0].WeatherIcon;
             // WInd details - wind chill, wind speed, wind direction
             const windChillC = data[0].WindChillTemperature.Metric.Value;    
             const windChillF = data[0].WindChillTemperature.Imperial.Value; 
@@ -88,12 +90,12 @@ weatherApp.getWeatherDetails = (key) => {
             const isDayTime = data[0].IsDayTime;
             // Pass variables as parameters into other methods
             weatherApp.toggleDarkStyles(isDayTime);
-            weatherApp.appendMainDetails(tempC, tempF, weatherText, weatherApp.cityName);
+            weatherApp.appendMainDetails(tempC, tempF, weatherText, weatherApp.cityName, weatherIcon);
             weatherApp.appendWindDetails(windChillC, windChillF, windSpeedKm, windDirection);
             weatherApp.appendOtherDetails(uvIndex, uvIndexText, relativeHumidity, airPressure);
         });
 }
-    
+
 // Method to change site styles based on isDayTime boolean
 weatherApp.toggleDarkStyles = (boolean) => {
     if (boolean === true) {
@@ -115,10 +117,11 @@ weatherApp.toggleDarkStyles = (boolean) => {
 }
     
 // Method to append main details (temperature, weather text, city name) to page
-weatherApp.appendMainDetails = (tempC, tempF, weatherText, cityName) => {
+weatherApp.appendMainDetails = (tempC, tempF, weatherText, cityName, iconNum) => {
     // Elements to append
     const newH2 = document.createElement('h2');
     const newH3 = document.createElement('h3');
+    const newIconEl = document.createElement('img')
     const newParagraphC = document.createElement('p');
     const newParagraphF = document.createElement('p');
     // Container div to append to
@@ -127,6 +130,7 @@ weatherApp.appendMainDetails = (tempC, tempF, weatherText, cityName) => {
     // Update element text
     newH2.innerText = cityName;
     newH3.innerText = weatherText;
+    newIconEl.src = `./assets/${iconNum}-s.png`;
     newParagraphC.innerHTML = `${tempC}&#8451;`;
     newParagraphF.innerHTML = `${tempF}&#8457;`;
     // Clears previous data
@@ -134,7 +138,7 @@ weatherApp.appendMainDetails = (tempC, tempF, weatherText, cityName) => {
     divElCurrentWeather.innerHTML = '';
     // Appends new data
     divElCityName.append(newH2);
-    divElCurrentWeather.append(newH3, newParagraphC, newParagraphF)
+    divElCurrentWeather.append(newIconEl, newH3, newParagraphC, newParagraphF)
 }
 
 // Method to append wind details (windchill, wind speed, wind direction) to page
