@@ -404,7 +404,7 @@ a {
 }
 .accuweather .dataContainer .cityName {
   padding: 20px 0 10px 0;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .accuweather .dataContainer .cityName h2 {
   border-bottom: 3px solid #8ba5cf;
@@ -480,7 +480,7 @@ a {
 .accuweatherDark .dataContainer .cityName {
   padding: 20px 0 10px 0;
   border-bottom: 3px solid #8ba5cf;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .accuweatherDark .dataContainer .currentWeather {
   width: 75%;
