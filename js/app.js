@@ -45,7 +45,6 @@ weatherApp.localDate = () => {
     let hours = time.getHours();
     let minutes = time.getMinutes();
     let seconds = time.getSeconds();
-    // console.log(`${day} ${month} ${time.getDate()} ${year} ${hours}:${minutes}:${seconds}`);
     // Container div to append to
     const divElLocalDate = document.querySelector('.localDate p');
     hours = (hours < 10) ? "0" + hours : hours;
