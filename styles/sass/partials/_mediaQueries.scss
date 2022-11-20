@@ -1,0 +1,170 @@
+@use "./variables";
+
+// 900px and under
+@media (max-width: 900px) {
+   h1 {
+    font-size: 3rem;
+   }
+
+   label {
+    font-size: 1.2rem;
+   }
+
+   p {
+    font-size: 1.6rem;
+   }
+    
+}
+
+// 768px and under
+@media (max-width: 768px) {
+    .wrapper {
+        width: 100%;
+    }
+    header {
+        span {
+            display: block;
+        }
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+    h3 {
+        font-size: 1.6rem;
+    }
+
+     label {
+    font-size: 1rem;
+   }
+   .searchForm {
+
+        input {
+            width: 70%;
+            padding: 2px;
+            font-size: 1.7rem;
+        }
+
+        button {
+            width: 70%;
+            padding: 5px;
+            font-size: 1.4rem;
+        }
+    }
+   .dataContainer {
+    .detailsContainer {
+        flex-direction: column;
+    }
+   }
+    
+}
+
+// 600px and under
+@media (max-width: 600px) {
+
+     p {
+    font-size: 1.4rem;
+   }
+
+    fieldset {
+        text-align: center;
+        span {
+    display: block;
+   }
+    } 
+
+    footer {
+        p {
+            font-size: 1rem;
+        }
+    }
+}
+
+// 460px and under
+@media (max-width: 460px) {
+
+    h1 {
+        font-size: 2.3rem;
+    }
+     label {
+    font-size: 0.9rem;
+   }
+
+   .searchForm {
+
+        input {
+            width: 90%;
+            padding: 2px;
+            font-size: 1.5rem;
+        }
+
+        button {
+            width: 90%;
+            padding: 5px;
+            font-size: 1.3rem;
+        }
+    }
+
+    .accuweather {
+
+        .dataContainer {
+
+            .localDate {
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+            .detailsWind,
+            .detailsOther {
+
+                p {
+                padding: 15px 0;
+                font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .accuweatherDark {
+
+        .dataContainer {
+
+            .localDate {
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+            .detailsWind,
+            .detailsOther {
+
+                p {
+                padding: 15px 0;
+                font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+     h2 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+        padding-left: 10px;
+    }
+    p {
+        font-size: 1rem;
+        padding: 0 5px;
+    }
+
+    footer {
+        p {
+            font-size: 0.8rem;
+        }
+         p:nth-child(2) {
+        font-size: 0.6rem;
+        }
+    }
+}
+
+

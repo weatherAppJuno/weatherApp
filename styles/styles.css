@@ -404,13 +404,13 @@ a {
 }
 .accuweather .dataContainer .cityName {
   padding: 20px 0 10px 0;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .accuweather .dataContainer .cityName h2 {
   border-bottom: 3px solid #8ba5cf;
 }
 .accuweather .dataContainer .currentWeather {
-  width: 75%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -426,7 +426,7 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 75%;
+  width: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -440,7 +440,7 @@ a {
 .accuweather .dataContainer .detailsWind p,
 .accuweather .dataContainer .detailsOther p {
   padding: 15px 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 .accuweather .dataContainer .detailsWind .uv, .accuweather .dataContainer .detailsWind .humidity, .accuweather .dataContainer .detailsWind .pressure, .accuweather .dataContainer .detailsWind .windChill, .accuweather .dataContainer .detailsWind .windSpeed, .accuweather .dataContainer .detailsWind .windDirection,
 .accuweather .dataContainer .detailsOther .uv,
@@ -462,7 +462,7 @@ a {
   background-color: #1b2a42;
   color: #c3d4ea;
   width: 100%;
-  min-height: 45vh;
+  min-height: 50vh;
 }
 .accuweatherDark .dataContainer {
   display: -webkit-box;
@@ -480,10 +480,10 @@ a {
 .accuweatherDark .dataContainer .cityName {
   padding: 20px 0 10px 0;
   border-bottom: 3px solid #8ba5cf;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .accuweatherDark .dataContainer .currentWeather {
-  width: 75%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -499,7 +499,7 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 75%;
+  width: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -513,7 +513,7 @@ a {
 .accuweatherDark .dataContainer .detailsWind p,
 .accuweatherDark .dataContainer .detailsOther p {
   padding: 15px 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 .accuweatherDark .dataContainer .detailsWind .uv, .accuweatherDark .dataContainer .detailsWind .humidity, .accuweatherDark .dataContainer .detailsWind .pressure, .accuweatherDark .dataContainer .detailsWind .windChill, .accuweatherDark .dataContainer .detailsWind .windSpeed, .accuweatherDark .dataContainer .detailsWind .windDirection,
 .accuweatherDark .dataContainer .detailsOther .uv,
@@ -547,4 +547,114 @@ footer p:nth-child(2) {
 footer a:hover,
 footer a:focus {
   color: #F9F9F9;
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 3rem;
+  }
+  label {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
+  header span {
+    display: block;
+  }
+  h2 {
+    font-size: 2.2rem;
+  }
+  h3 {
+    font-size: 1.6rem;
+  }
+  label {
+    font-size: 1rem;
+  }
+  .searchForm input {
+    width: 70%;
+    padding: 2px;
+    font-size: 1.7rem;
+  }
+  .searchForm button {
+    width: 70%;
+    padding: 5px;
+    font-size: 1.4rem;
+  }
+  .dataContainer .detailsContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  p {
+    font-size: 1.4rem;
+  }
+  fieldset {
+    text-align: center;
+  }
+  fieldset span {
+    display: block;
+  }
+  footer p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 460px) {
+  h1 {
+    font-size: 2.3rem;
+  }
+  label {
+    font-size: 0.9rem;
+  }
+  .searchForm input {
+    width: 90%;
+    padding: 2px;
+    font-size: 1.5rem;
+  }
+  .searchForm button {
+    width: 90%;
+    padding: 5px;
+    font-size: 1.3rem;
+  }
+  .accuweather .dataContainer .localDate p {
+    font-size: 0.9rem;
+  }
+  .accuweather .dataContainer .detailsWind p,
+.accuweather .dataContainer .detailsOther p {
+    padding: 15px 0;
+    font-size: 1.2rem;
+  }
+  .accuweatherDark .dataContainer .localDate p {
+    font-size: 0.9rem;
+  }
+  .accuweatherDark .dataContainer .detailsWind p,
+.accuweatherDark .dataContainer .detailsOther p {
+    padding: 15px 0;
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+    padding-left: 10px;
+  }
+  p {
+    font-size: 1rem;
+    padding: 0 5px;
+  }
+  footer p {
+    font-size: 0.8rem;
+  }
+  footer p:nth-child(2) {
+    font-size: 0.6rem;
+  }
 }
