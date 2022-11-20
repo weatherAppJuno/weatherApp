@@ -269,6 +269,10 @@ h3 {
   font-size: 1.8rem;
 }
 
+p {
+  font-size: 1.8rem;
+}
+
 label, button {
   font-size: 1.5rem;
 }
@@ -553,7 +557,7 @@ footer a:focus {
     font-size: 1.2rem;
   }
   p {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 }
 @media (max-width: 768px) {
@@ -590,6 +594,9 @@ footer a:focus {
   }
 }
 @media (max-width: 600px) {
+  p {
+    font-size: 1.4rem;
+  }
   fieldset {
     text-align: center;
   }
@@ -623,7 +630,7 @@ footer a:focus {
   .accuweather .dataContainer .detailsWind p,
 .accuweather .dataContainer .detailsOther p {
     padding: 15px 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   .accuweatherDark .dataContainer .localDate p {
     font-size: 0.9rem;
@@ -631,7 +638,7 @@ footer a:focus {
   .accuweatherDark .dataContainer .detailsWind p,
 .accuweatherDark .dataContainer .detailsOther p {
     padding: 15px 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   h2 {
     font-size: 2rem;
