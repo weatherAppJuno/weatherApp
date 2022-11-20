@@ -27,7 +27,7 @@
         }
         
         .currentWeather {
-            width: 75%;
+            width: 100%;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -37,7 +37,7 @@
         
         .detailsContainer {
             display: flex;
-            width: 75%;
+            width: 100%;
             justify-content: center;
             // border: 2px solid variables.$tertiary;
             
@@ -50,7 +50,7 @@
 
             p {
                 padding: 15px 0;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             .uv, .humidity, .pressure, .windChill, .windSpeed, .windDirection {
                 display: flex;
@@ -64,7 +64,7 @@
     background-color: variables.$dark;
     color: variables.$secondary;
     width: 100%;
-    min-height: 45vh;
+    min-height: 50vh;
 
     .dataContainer {
         display: flex;
@@ -79,7 +79,7 @@
         }
         
         .currentWeather {
-            width: 75%;
+            width: 100%;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -89,7 +89,7 @@
         
         .detailsContainer {
             display: flex;
-            width: 75%;
+            width: 100%;
             justify-content: center;
             
         }
@@ -101,7 +101,7 @@
 
             p {
                 padding: 15px 0;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             .uv, .humidity, .pressure, .windChill, .windSpeed, .windDirection {
                 display: flex;
