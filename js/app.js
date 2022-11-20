@@ -2,7 +2,7 @@
 const weatherApp = {};
   
 // Globally scoped variables
-weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8';
+weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1';
 weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
