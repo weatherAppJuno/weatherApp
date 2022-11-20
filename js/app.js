@@ -71,8 +71,11 @@ weatherApp.getUserInput = () => {
     document.querySelector(".searchForm").addEventListener('submit', (event) => {
         event.preventDefault();
         const inputEl = document.querySelector('#searchInput');
+        // console.log(inputValue);
+        console.log(event);
+        console.log(event.target[1].value);
         // When user submits form, store the value of the input into a variable
-        const inputValue = event.originalTarget[1].value;
+        const inputValue = event.target[1].value;
         // Pass inputValue into the API call method below as q
         weatherApp.callSearchApi(inputValue);
         // Clear the text in the input field
