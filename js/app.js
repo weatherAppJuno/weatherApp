@@ -2,10 +2,7 @@
 const weatherApp = {};
   
 // Globally scoped variables
-// weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8'; // Radojko's Key
-weatherApp.apiKey = 'virj6ycdX84826o1Fehp3b5LOGCGKqT3'; // Daniela's Key
-// weatherApp.apiKey = 'pO2zESA35RlIGQ36xPDv6xrcG7DaJVCK'; // Third key for testing
-// weatherApp.apiKey = '6hQlXX1SR0owbCvgM5t4M69JA5tsvGj1'; // Fourth Key
+weatherApp.apiKey = 'pJmfSq8JcnpKVxiVA49kf1ywVRQ5sAb8';
 weatherApp.searchEndpoint = 'http://dataservice.accuweather.com/locations/v1/cities/CA/ON/search/'; // Searches within Canada, then Ontario 
 weatherApp.weatherEndpoint = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
